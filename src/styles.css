@@ -1,0 +1,103 @@
+.container {
+  margin-top: 20px;
+  border: 5px solid black;
+  border-radius: 40px;
+  padding: 20px;
+  width: 80%;
+  max-width: 450px;
+  font-family: "Architects Daughter", cursive;
+  color: antiquewhite;
+  background-image: url("images/guille-pozzi-sbcIAn4Mn14-unsplash.jpeg");
+  background-size: cover;
+}
+form {
+  margin-bottom: 20px;
+}
+.city-search-bar {
+  max-width: 90%;
+  align-content: center;
+  margin: 0 auto;
+}
+.btn {
+  background-color: black;
+  color: antiquewhite;
+  border: 1px solid black;
+  border-radius: 40px;
+  transition: all 200ms;
+}
+.btn:hover {
+  background-color: antiquewhite;
+  color: black;
+  border: 1px solid black;
+}
+ul {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+li {
+  padding: 5px 0;
+  font-size: 24px;
+}
+.days {
+  font-weight: 900;
+  font-size: 24px;
+  text-decoration-line: underline;
+}
+.small-icons {
+  font-size: 20px;
+}
+#current-weather {
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0;
+}
+.forecast {
+  padding: 0;
+}
+h1 {
+  margin: 0 auto;
+  font-size: 36px;
+}
+h2 {
+  margin: 0 auto;
+}
+
+a {
+  color: antiquewhite;
+  text-decoration: none;
+}
+
+a:hover {
+  color: antiquewhite;
+  text-decoration: underline;
+}
+
+#geolocation-button {
+  display: inline-block;
+  color: antiquewhite;
+  background-color: black;
+  border-radius: 10px;
+}
+#geolocation-button:hover {
+  background-color: antiquewhite;
+  color: black;
+  border: 1px solid black;
+}
+#current-day-time {
+  text-align: center;
+}
+#temp {
+  font-size: 36px;
+}
+
+#current-weather-icon {
+  display: block;
+  margin: 0 auto;
+  font-size: 70px;
+  padding: 25px 0;
+}
