@@ -101,3 +101,11 @@ a:hover {
   font-size: 70px;
   padding: 25px 0;
 }
+
+#footer {
+  display: block;
+  text-align: center;
+}
+#github-link {
+  color: black;
+}
