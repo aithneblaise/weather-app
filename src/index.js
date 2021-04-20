@@ -53,6 +53,12 @@ function displayCityData(response) {
   let currentTempElement = document.querySelector("#temp");
   let currentTemp = Math.round(response.data.main.temp);
   currentTempElement.innerHTML = `${currentTemp}`;
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 let currentDateTimeElement = document.querySelector("#current-day-time");
