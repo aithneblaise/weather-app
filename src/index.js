@@ -59,6 +59,15 @@ function displayCityData(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  let descriptionElement = document.querySelector("#weather-description");
+  let weatherDescription = response.data.weather[0].main;
+  descriptionElement.innerHTML = `${weatherDescription}`;
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let windSpeed = Math.round(response.data.wind.speed);
+  windSpeedElement.innerHTML = `${windSpeed} m/s`;
+  let precipitationElement = document.querySelector("#precipitation");
+  let precipitation = response.data.main.humidity;
+  precipitation.innerHTML = `${humidity}%`;
 }
 
 let currentDateTimeElement = document.querySelector("#current-day-time");
