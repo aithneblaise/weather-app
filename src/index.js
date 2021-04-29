@@ -51,8 +51,8 @@ function displayCityData(response) {
   let cityName = response.data.name.toUpperCase();
   cityNameElement.innerHTML = `${cityName}`;
   let currentTempElement = document.querySelector("#temp");
-  let currentTemp = Math.round(response.data.main.temp);
-  currentTempElement.innerHTML = `${currentTemp}`;
+  celsiusTemp = response.data.main.temp;
+  currentTempElement.innerHTML = Math.round(celsiusTemp);
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
@@ -65,10 +65,31 @@ function displayCityData(response) {
   let windSpeedElement = document.querySelector("#wind-speed");
   let windSpeed = Math.round(response.data.wind.speed);
   windSpeedElement.innerHTML = `${windSpeed} m/s`;
-  let precipitationElement = document.querySelector("#precipitation");
-  let precipitation = response.data.main.humidity;
-  precipitation.innerHTML = `${humidity}%`;
+  let humidityElement = document.querySelector("#humidity");
+  let humidity = response.data.main.humidity;
+  humidityElement.innerHTML = `${humidity}%`;
 }
+
+function showFarenheitTemp(event) {
+  event.preventDefault();
+  let currentTempElement = document.querySelector("#temp");
+  let farenheitTemp = celsiusTemp * 1.8 + 32;
+  currentTempElement.innerHTML = Math.round(farenheitTemp);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let currentTempElement = document.querySelector("#temp");
+  currentTempElement.innerHTML = Math.round(celsiusTemp);
+}
+
+function search(city) {
+  let apiKey = "32bd1cb19b26d8d5db620df7d9642f9e";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayCityData);
+}
+
+search("paris");
 
 let currentDateTimeElement = document.querySelector("#current-day-time");
 let currentDateTime = new Date();
@@ -79,3 +100,11 @@ searchForm.addEventListener("submit", getCityData);
 
 let geolocationButton = document.querySelector("#geolocation-button");
 geolocationButton.addEventListener("click", locateUser);
+
+let celsiusTemp = null;
+
+let farenheitLink = document.querySelector("#farenheit-link");
+farenheitLink.addEventListener("click", showFarenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);

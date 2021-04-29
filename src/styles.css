@@ -102,6 +102,10 @@ a:hover {
   padding: 25px 0;
 }
 
+#current-temp {
+  padding-bottom: 25px;
+}
+
 #footer {
   display: block;
   text-align: center;
