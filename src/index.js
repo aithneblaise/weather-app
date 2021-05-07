@@ -70,13 +70,6 @@ function displayCityData(response) {
   humidityElement.innerHTML = `${humidity}%`;
 }
 
-function showFarenheitTemp(event) {
-  event.preventDefault();
-  let currentTempElement = document.querySelector("#temp");
-  let farenheitTemp = celsiusTemp * 1.8 + 32;
-  currentTempElement.innerHTML = Math.round(farenheitTemp);
-}
-
 function showCelsiusTemp(event) {
   event.preventDefault();
   let currentTempElement = document.querySelector("#temp");
@@ -102,9 +95,6 @@ let geolocationButton = document.querySelector("#geolocation-button");
 geolocationButton.addEventListener("click", locateUser);
 
 let celsiusTemp = null;
-
-let farenheitLink = document.querySelector("#farenheit-link");
-farenheitLink.addEventListener("click", showFarenheitTemp);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
