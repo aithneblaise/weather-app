@@ -68,12 +68,52 @@ function displayCityData(response) {
   let humidityElement = document.querySelector("#humidity");
   let humidity = response.data.main.humidity;
   humidityElement.innerHTML = `${humidity}%`;
+
+  getForecast(response.data.coord);
 }
 
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let currentTempElement = document.querySelector("#temp");
-  currentTempElement.innerHTML = Math.round(celsiusTemp);
+function getForecast(coordinates) {
+  let apiKey = "32bd1cb19b26d8d5db620df7d9642f9e";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,hourly,minutely&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  console.log(response);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<ul>`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <li>
+        <div class="weather-forecast-date days">${formatDay(
+          forecastDay.dt
+        )}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          alt=""
+          width="42"
+        />${Math.round(forecastDay.temp.day)}°
+      </li>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</ul>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function search(city) {
@@ -93,8 +133,3 @@ searchForm.addEventListener("submit", getCityData);
 
 let geolocationButton = document.querySelector("#geolocation-button");
 geolocationButton.addEventListener("click", locateUser);
-
-let celsiusTemp = null;
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
